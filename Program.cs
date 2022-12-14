@@ -11,7 +11,7 @@ string[] instructions = {
     "\t\tq - Exit this app"
 };
 
-Utils.WriteText(instructions);
+Utils.DisplayText(instructions);
 
 string[] validInput = { "j", "p", "n", "q" };
 string aCharacter;
@@ -24,8 +24,8 @@ do {
     aCharacter = Utils.GetOneCharacter(false);
 
     if (Utils.IsValidateInput(aCharacter, validInput) == false) {
-        Utils.WriteText("Invalid Input");
-        Utils.WriteText(instructions.TakeLast(instructions.Length - 2).ToArray());
+        Utils.DisplayErrorText("Invalid Input");
+        Utils.DisplayErrorText(instructions.TakeLast(instructions.Length - 2).ToArray());
     }
     else {
         if (aCharacter != "q") {
@@ -48,10 +48,10 @@ do {
             }
 
             if (joke == null) {
-                Utils.WriteText($"No {jokeType} joke found!");
+                Utils.DisplayErrorText($"No {jokeType} joke found!");
             }
             else {
-                Utils.WriteText(joke.ToString()!);
+                Utils.DisplayText(joke.ToString()!);
             }
         }
 

@@ -13,6 +13,7 @@ namespace gwc
         private List<IJoke> _jokes = new List<IJoke>();
         private IJokeApi _jokesApi;
         private int _currentJoke = -1;
+        private const string _randomJokeApi = "https://api.chucknorris.io/jokes/random";
 
         public JokeProvider(IJokeApi jokesApi) {
             _jokesApi = jokesApi;
@@ -25,7 +26,7 @@ namespace gwc
         public async Task<IJoke> GetNewJoke() {
             IJoke? joke = null;
             try {
-                HttpResponseMessage response = await _jokesApi.GetAsync("https://api.chucknorris.io/jokes/random");
+                HttpResponseMessage response = await _jokesApi.GetAsync(_randomJokeApi);
                 joke = await response.Content.ReadFromJsonAsync<Joke>();
             } catch { }
 

@@ -9,9 +9,29 @@ namespace gwc
         static Thread? _spinnerThread;
 
         /// <summary>
+        /// Displays the supplied text to the default output device using the default text colour.
+        /// </summary>
+        /// <param name="textToWrite">One or more text lines to display</param>
+        public static void DisplayText(params string[] textToWrite) {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            WriteText(textToWrite);
+            Console.ResetColor();
+        }
+
+        /// <summary>
+        /// Displays the supplied text to the default output device using the default error colour.
+        /// </summary>
+        /// <param name="textToWrite">One or more text lines to display</param>
+        public static void DisplayErrorText(params string[] textToWrite) {
+            Console.ForegroundColor = ConsoleColor.Red;
+            WriteText(textToWrite);
+            Console.ResetColor();
+        }
+
+        /// <summary>
         /// Writes the supplied text to the Console. Future work can extend this to write to a Stream of some sort.
         /// </summary>
-        public static void WriteText(params string[] textToWrite) {
+        private static void WriteText(params string[] textToWrite) {
             Console.WriteLine();
             foreach (string text in textToWrite) {
                 Console.WriteLine(text);
